@@ -44,3 +44,23 @@ func FetchSliceOfIntsInString(line string) []int {
 	}
 	return nums
 }
+
+func SplitStringSliceByEmptyLines(input []string) [][]string {
+    res := [][]string{}
+
+    currentPart := []string{}
+    for _, line := range input {
+        if strings.TrimSpace(line) == "" {
+            if len(currentPart) > 0 {
+                res = append(res, currentPart)
+            }
+            currentPart = []string{}
+        } else {
+            currentPart = append(currentPart, line)
+        }
+    }
+    if len(currentPart) > 0 {
+        res = append(res, currentPart)
+    }
+    return res
+}
